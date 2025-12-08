@@ -1,0 +1,40 @@
+name: Deploy Flutter Web to GitHub Pages
+
+on:
+  push:
+    branches: [ main, master ]          # hỗ trợ cả main và master
+  workflow_dispatch:                    # cho phép bấm chạy tay
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Enable web
+        run: flutter config --enable-web
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      # Flutter dùng flutter pub get, không phải dart pub get
+
+      - name: Build web
+        run: flutter build web --release --base-href "/flutter_mid_exams/"
+
+      # Ví dụ tên repo là ltdd-22t1020175 thì để:
+      # --base-href "/ltdd-22t1020175/"
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: build/web
+          force_orphan: true
