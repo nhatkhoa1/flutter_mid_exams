@@ -2,7 +2,7 @@ name: Deploy Flutter Web to GitHub Pages
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [ master ]
   workflow_dispatch:
 
 jobs:
@@ -26,8 +26,9 @@ jobs:
       - name: Build web
         run: flutter build web --release --base-href "/flutter_mid_exams/"
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3.9.3   # version mới nhất ổn định
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: build/web
+          force_orphan: true                       # thêm dòng này để tránh lỗi
