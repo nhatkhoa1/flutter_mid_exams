@@ -1,0 +1,33 @@
+name: flutter_mid_exams
+description: A new Flutter project.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  shared_preferences: ^2.3.2
+  dio: ^5.7.0 # ← BẮT BUỘC CHO BÀI 5 & BÀI 6 (gọi API FakeStore & DummyJSON)
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/ # ← Load ảnh cho bài 3, 4 (và bài 5, 6 nếu cần)
+    # Nếu muốn liệt kê từng file (không bắt buộc, nhưng an toàn hơn):
+    - assets/n1.jpg
+    - assets/n2.jpg
+    - assets/n3.jpg
+    - assets/h1.jpg
+    - assets/h2.jpg
+    - assets/h3.jpg
+    - assets/h4.jpg
